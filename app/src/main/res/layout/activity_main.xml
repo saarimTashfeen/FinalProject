@@ -6,13 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
     <EditText
         android:id="@+id/latitude"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/toolbar"
         android:hint="latitude"
         android:singleLine="true" />
 
@@ -20,7 +24,7 @@
         android:id="@+id/longitude"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/toolbar"
         android:layout_toRightOf="@+id/latitude"
         android:hint="longitude"
         android:singleLine="true" />
@@ -28,7 +32,8 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/toolbar"
+        android:layout_toRightOf="@+id/longitude"
         android:layout_alignParentRight="true"/>
     <ListView
         android:id="@+id/listView"
