@@ -1,16 +1,28 @@
 package com.example.finalproject;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.widget.Toolbar;
+
+import com.google.android.material.navigation.NavigationView;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -20,7 +32,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     EditText lat;
     EditText lon;
     Button btn;
@@ -29,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     city city;
     ArrayList<city> shownCities;
 
+    Toolbar tb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +52,17 @@ public class MainActivity extends AppCompatActivity {
         btn = findViewById(R.id.button);
         lv = findViewById(R.id.listView);
         pb = findViewById(R.id.progressBar);
+        tb = (Toolbar) findViewById(R.id.tb);
+        //setActionBar(tb);
+        setSupportActionBar(tb);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
+                drawer, tb, R.string.open, R.string.close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         shownCities = new ArrayList<>();
 
@@ -60,6 +84,65 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.AboutThisProject:
+            Toast.makeText(this,"This is the Geo Data Source activity, written by Aimen Hallou",Toast.LENGTH_SHORT).show();
+        }
+        return true;
+    }
+    @Override
+    public boolean onNavigationItemSelected( MenuItem item) {
+        switch(item.getItemId())
+        {
+            case R.id.instructions:
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+                alert.setTitle("Instructions");
+                alert.setMessage("Please enter 2 different sets of numbers");
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alert.create().show();
+                break;
+            case R.id.aboutAPI:
+                Toast.makeText(this,"https://www.geodatasource.com/web-service",Toast.LENGTH_SHORT);
+                break;
+            case R.id.donate:
+                AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
+                alert2.setTitle("Please give generously");
+                alert2.setMessage("How much money would you like to donate?");
+                alert2.setPositiveButton("THANK YOU", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alert2.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                alert2.create().show();
+                break;
+        }
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return false;
+    }
+
     class GeoData  extends AsyncTask<String, Integer, String> {
 
         @Override

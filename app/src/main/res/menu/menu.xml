@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/SongLyricsSearch"
+        android:icon="@drawable/newmusic"
+        android:title="Song Lyrics"
+        app:showAsAction="always"
+        android:orderInCategory="100"/>
+    <item
+        android:id="@+id/DeezerSongSearchApi"
+        android:icon="@drawable/newdeezer"
+        android:title="Deezer"
+        app:showAsAction="always"
+        android:orderInCategory="200"/>
+    <item
+        android:id="@+id/puzzled"
+        android:icon="@drawable/newglobe"
+        android:title="Puzzled"
+        app:showAsAction="always"
+        android:orderInCategory="300"/>
+    <item
+        android:id="@+id/AboutThisProject"
+        android:title="About This Project"
+        app:showAsAction="never"
+        android:orderInCategory="400"/>
+</menu>
