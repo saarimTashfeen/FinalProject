@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item android:id="@+id/drawerGeo"
+        android:title="@string/geoToolbar"
+        android:icon="@drawable/globeimage"
+        app:showAsAction="always"/>
+
+
+    <item android:id="@+id/drawerLyrics"
+        android:title="@string/lyricsToolbar"
+        android:icon="@drawable/lyricsimage"
+        app:showAsAction="always"
+        />
+
+
+    <item android:id="@+id/drawerDeezer"
+        android:title="@string/deezerToolbar"
+        android:icon="@drawable/deezerlogocircle"
+        app:showAsAction="always"/>
+
+
+</menu>

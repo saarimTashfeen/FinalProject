@@ -1,3 +1,71 @@
 <resources>
+    //Deezer start page
     <string name="app_name">FinalProject</string>
+    <string name="searchText">Artist Search</string>
+    <string name="artistTypeHint">Ex: System of a Down</string>
+    <string name="searchButton">Search</string>
+    <string name="trackList">Test</string>
+    <string name="favouriteButton">Favourites</string>
+    <string name="helpButton">Help</string>
+
+    //Toolbar
+    <string name="deezerToolbar">Deezer Song Search (Austin)</string>
+    <string name="lyricsToolbar">Song Lyrics Search (Saarim)</string>
+    <string name="geoToolbar">Geo Data Source (Aimen)</string>
+    <string name="titleToolbar">Deezer API Search - Austin Stevenson - Version: 1.0</string>
+
+    //XML
+    <string name="songName">Song: </string>
+    <string name="albumName">Album: </string>
+    <string name="duration">Duration: </string>
+    <string name="favourite">Favourite</string>
+    <string name="unfavourite">Unfavourite</string>
+
+    //DrawerLayout
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="AppNameDeezer">Deezer API Search</string>
+    <string name="AuthorDeezer">Austin Stevenson</string>
+    <string name="DeezerVersion">Version: 1.0</string>
+
+    //Secret snackbar
+    <string name="snackbarText">You have found a secret! Would you like to go? (Note: this will open a web browser)</string>
+    <string name="goSnackbar">Go</string>
+    <string name="page_address">https://play.google.com/store/apps/details?id=com.spotify.music</string>
+    <string name="title_activity_lyrics_temp_home">LyricsTempHome</string>
+
+    //Java Search
+    <string name="defaultPref">Ex: System of a Down</string>
+    <string name="ex">Ex: </string>
+    <string name="HelpTitleStart">Help Screen</string>
+    <string name="HelpTitleFavourites">Favourites Help</string>
+    <string name="HelpTitleResults">Results Help</string>
+    <string name="HelpTitleDetails">Details Help</string>
+    <string name="nextButton">Next</string>
+    <string name="endButton">End</string>
+    <string name="goBack">Go Back</string>
+    <string name="HelpScreen1">Welcome to the Deezer API searcher.
+                            \nThe search page contains four different options:
+                            \n1. The SEARCH BAR can be used to enter any artist\'s name in the field provided.
+                            \n2. The SEARCH button is used to confirm your SEARCH BAR String.
+                            \n3. The FAVOURITES button is used to take you to your favourited songs (if you have any).
+                            \n4. You already know what the HELP button does."</string>
+    <string name="HelpScreen2">The favourites page contains two options:
+                            \n1. View the details of your favourite song by clicking on it!
+                            \n2. When in the details of your song, press UNFAVOURITE to remove it from your list.</string>
+    <string name="HelpScreen3">The results page contains one option:
+                            \n1. Click a song to view the details of it.</string>
+    <string name="HelpScreen4">The details page contains one option:
+                            \n1. Click the FAVOURITE button to add it to your favourites list (And again to remove it).</string>
+
+    //Java Favourites
+    <string name="successRemove">Successfully removed </string>
+    <string name="fromFavourites"> from favourites.</string>
+
+    //Java Details
+    <string name="seconds"> seconds</string>
+    <string name="successAdd">Successfully added </string>
+    <string name="toFavourites"> to favourites.</string>
+
+
 </resources>

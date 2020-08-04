@@ -1,0 +1,51 @@
+<androidx.appcompat.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:id="@+id/tool_bar"
+        android:theme="@style/ToolbarTheme"
+        app:titleTextAppearance="@style/Toolbar.TitleText"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/titleToolbar"
+            android:textColor="@android:color/white"
+            android:textSize="10sp"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_gravity="center"
+            />
+    </androidx.appcompat.widget.Toolbar>
+
+<!--    <androidx.drawerlayout.widget.DrawerLayout-->
+<!--        android:id="@+id/drawer_layout"-->
+<!--        android:layout_width="410dp"-->
+<!--        android:layout_height="670dp"-->
+<!--        tools:openDrawer="start">-->
+<!--        &lt;!&ndash; THIS IS WHAT IS VISIBLE ON SCREEN:&ndash;&gt;-->
+
+<!--        &lt;!&ndash; THIS IS WHAT IS WHAT POPS OUT FROM THE SIDE:&ndash;&gt;-->
+<!--        <com.google.android.material.navigation.NavigationView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="start"-->
+<!--            android:fitsSystemWindows="true"-->
+<!--            app:headerLayout="@layout/activity_deezer_header_layout"-->
+<!--            app:menu="@menu/menu_deezer_drawer"-->
+<!--            android:id="@+id/nav_view"/>-->
+
+<!--    </androidx.drawerlayout.widget.DrawerLayout>-->
+
+
+
+
+
+
+
+
