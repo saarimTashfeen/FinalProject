@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FinalProject</string>
+    <string name="searchText">Recherche d\'Artiste</string>
+    <string name="artistTypeHint">Ex: System of a Down</string>
+    <string name="searchButton">Chercher</string>
+    <string name="trackList">Tester</string>
+    <string name="favouriteButton">Favoris</string>
+    <string name="helpButton">Aidez-moi</string>
+    <string name="deezerToolbar">Deezer</string>
+    <string name="lyricsToolbar">Paroles de Chansons</string>
+    <string name="geoToolbar">Source de Données Géographiques</string>
+    <string name="titleToolbar">Recherche API Deezer - Austin Stevenson - Version: 1.0</string>
+    <string name="songName">Chanson:</string>
+    <string name="albumName">Album:</string>
+    <string name="duration">Durée:</string>
+    <string name="favourite">Préférée</string>
+    <string name="unfavourite">Défavorable</string>
+    <string name="open">Ouverte</string>
+    <string name="close">Fermer</string>
+    <string name="AppNameDeezer">Recherche API Deezer</string>
+    <string name="AuthorDeezer">Austin Stevenson</string>
+    <string name="DeezerVersion">Version: 1.0</string>
+    <string name="snackbarText">Vous avez trouvé un secret! Aimerais-tu aller? (Remarque: cela ouvrira un navigateur Web)</string>
+    <string name="goSnackbar">Aller</string>
+    <string name="page_address">https://play.google.com/store/apps/details?id=com.spotify.music</string>
+    <string name="title_activity_lyrics_temp_home">LyricsTempHome</string>
+    <string name="defaultPref">Ex: System of a Down</string>
+    <string name="ex">"Ex: "</string>
+    <string name="HelpTitleStart">Écran d\'aide</string>
+    <string name="HelpTitleFavourites">Aide aux favoris</string>
+    <string name="HelpTitleResults">Aide sur les résultats</string>
+    <string name="HelpTitleDetails">Aide détaillée</string>
+    <string name="nextButton">Prochain</string>
+    <string name="endButton">Fin</string>
+    <string name="goBack">Retourner</string>
+    <string name="HelpScreen1">Bienvenue dans le moteur de recherche d\'API Deezer.                              La page de recherche contient quatre options différentes:                              1. La BARRE DE RECHERCHE peut être utilisée pour saisir le nom de n\'importe quel artiste dans le champ prévu à cet effet.                              2. Le bouton SEARCH est utilisé pour confirmer votre chaîne de BARRE DE RECHERCHE.                              3. Le bouton FAVORIS est utilisé pour vous diriger vers vos chansons préférées (si vous en avez).                              4. Vous savez déjà ce que fait le bouton HELP.</string>
+    <string name="HelpScreen2">La page des favoris contient deux options:                              1. Affichez les détails de votre chanson préférée en cliquant dessus!                              2. Lorsque vous êtes dans les détails de votre chanson, appuyez sur UNFAVOURITE pour la supprimer de votre liste.</string>
+    <string name="HelpScreen3">La page de résultats contient une option: 1. Click a song to view the details of it.</string>
+    <string name="HelpScreen4">La page de détails contient une option:                              1. Cliquez sur le bouton FAVORIS pour l\'ajouter à votre liste de favoris (et encore une fois pour le supprimer).</string>
+    <string name="successRemove">Supprimé avec succès</string>
+    <string name="fromFavourites">des favoris.</string>
+    <string name="seconds">" secondes"</string>
+    <string name="successAdd">Ajouté avec succès</string>
+    <string name="toFavourites">aux favoris.</string>
+</resources>

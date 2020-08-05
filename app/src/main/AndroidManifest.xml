@@ -11,18 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainLyrics">
+        <activity android:name=".GeoHome"></activity>
+        <activity android:name=".MainLyrics" />
+        <activity android:name=".DeezerEmpty" />
+        <activity android:name=".DeezerFavourites" />
+        <activity android:name=".DeezerDetails" />
+        <activity android:name=".DeezerResults" />
+        <activity android:name=".DeezerSearch" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".EmptyClassLyrics" />
-        <activity android:name=".EmptyActivityLyrics" />
-        <activity android:name=".LyricsScreen" />
-        <activity android:name=".MainActivity">
-
         </activity>
     </application>
 
