@@ -40,6 +40,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 public class MainLyrics extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+    //Class variables
     private String lyrics;
     private String lyricsTwo;
     private EditText artistName;
@@ -59,8 +60,11 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_lyrics);
 
+        //Loading shared prefs
         sharedPrefs = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
 
+
+        //toolbar and navigation code
         Toolbar tBar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(tBar);
 
@@ -74,14 +78,18 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        //getting the button id's
         Button googleSearch = (Button) findViewById(R.id.googleSearch);
         Button lyricsSearch = (Button) findViewById(R.id.lyricsSearch);
         Button toLyrics = (Button) findViewById(R.id.toLyrics);
 
+        //getiing edittext id's
         artistName = (EditText) findViewById(R.id.artistName);
         songName = (EditText) findViewById(R.id.songName);
 
 
+        //to lyrics button listener
         toLyrics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +104,7 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
 
 
 
-
+        //Google search button onclick
         googleSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,12 +159,15 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
 
 
 
+                if (artistNameEncoded == "" || songNameEncoded == ""){
+
+                    Toast.makeText(getApplicationContext(),"Song not found", Toast.LENGTH_LONG).show();
+                }else {
 
 
-
-                LyricsSearch req = new LyricsSearch();
-                req.execute("https://api.lyrics.ovh/v1/" + artistNameEncoded + "/" + songNameEncoded);
-
+                    LyricsSearch req = new LyricsSearch();
+                    req.execute("https://api.lyrics.ovh/v1/" + artistNameEncoded + "/" + songNameEncoded);
+                }
 
                 // Log.i("test", "test" + lyrics);
 
@@ -166,9 +177,12 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
         });
 
 
+
+        //loading shared prefs
         String savedArtist = sharedPrefs.getString("artist", "");
         String savedSong = sharedPrefs.getString("song", "");
 
+        //setting shared prefs
         artistName.setText(savedArtist);
         songName.setText(savedSong);
 
@@ -195,6 +209,7 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
 
     }
 
+    //Navigation method to sorting item clicks
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -204,17 +219,20 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
 
             //Toast.makeText(this, "Test Toast", Toast.LENGTH_SHORT).show();
 
+            //GOes to deezer activity
            Intent deezerIntent = new Intent(MainLyrics.this, DeezerSearch.class);
             startActivity(deezerIntent);
 
         } else if (id == R.id.geoHome){
 
 
+            //goes to geo activity
             Intent geoIntent = new Intent(MainLyrics.this, GeoHome.class);
             startActivity(geoIntent);
 
         }
 
+        //closes drawer if item is selected
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
@@ -223,6 +241,7 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
     }
 
 
+    //AsyncTask method for fetching lyrics from link
     class LyricsSearch extends AsyncTask<String, Integer, String> {
 
 
@@ -253,12 +272,18 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
 
                 String line = null;
 
+                //String builder building the entire result
                 while ((line = reader.readLine()) != null)
                 {
                     sb.append(line + "\n");
                 }
+
                 String result = sb.toString(); //result is the whole string
+
+                //fetching the tag that contains the lyrics
                 JSONObject lyricsFetch = new JSONObject(result);
+
+                //setting the lyrics variable
                 lyrics = lyricsFetch.getString("lyrics");
                 Log.i("test2", "test" + result);
                 //  lyricsTwo = result;
@@ -273,6 +298,7 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
 
 
 
+                //Starting the LyricsScreen activity and passing the data to it
                 Intent displayPage = new Intent(MainLyrics.this, LyricsScreen.class);
                 displayPage.putExtra(lyricsPlaceHolder, lyrics);
                 displayPage.putExtra(artistPlaceHolder, artistName.getText().toString());
@@ -318,6 +344,8 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
 
     }
 
+
+    //On Pause method for commiting shared prefs
     @Override
     protected void onPause() {
         super.onPause();
@@ -334,6 +362,8 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
 
     }
 
+
+    //inflating the toolbar layout
     public boolean onCreateOptionsMenu(Menu menu){
 
         MenuInflater mInflater = getMenuInflater();
@@ -341,16 +371,19 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
         return true;
     }
 
+
+    //Toolbar menu sorting method
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         String message = null;
-        //Look at your menu XML file. Put a case for every id in that file:
+
         switch(item.getItemId())
         {
-            //what to do when the menu item is selected:
+
             case R.id.item1:
                 //message = "You clicked item 1";
 
+                //Goes to deezer activity
                 Intent deezerIntent = new Intent(MainLyrics.this, DeezerSearch.class);
                 startActivity(deezerIntent);
 
@@ -358,6 +391,8 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
                 break;
             case R.id.item2:
               ///  message = "You clicked on the search";
+
+                //goes to geo activity
                 Intent geoIntent = new Intent(MainLyrics.this, GeoHome.class);
                 startActivity(geoIntent);
 
@@ -366,6 +401,7 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
             case R.id.helpItem:
                 //message = "You clicked on mail";
 
+                //alert for if the help item is picked
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainLyrics.this)
                         .setTitle("Help Menu")
                         .setMessage("Enter the artist name in the first EditTExt input and the song name in the Second EditText input. LyricsSearch fetches the lyrics and Google search searches up the artist and song name on google")
