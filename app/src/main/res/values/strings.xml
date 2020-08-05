@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">FinalProject</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="enterArist">Enter Artist Name Here</string>
+    <string name="enterSong">Enter Song Name Here</string>
+    <string name="hintSongName">Song Name</string>
+    <string name="hintArtistName">Artist Name</string>
+    <string name="lyricsSearch">Lyrics Search</string>
+    <string name="gooleSearch">Google Search</string>
+    <string name="savetodb">Save to Database</string>
+    <string name="lyrics">Lyrics</string>
+    <string name="deezer">Deezer Song Search API</string>
+    <string name="geo">Geo Data Source</string>
+
 </resources>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:openDrawer="start">
+        <!-- THIS IS WHAT IS VISIBLE ON SCREEN:-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+           >
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/toolbar"
+                android:background="#0000FF"/>
+
+            <TextView
+                android:layout_marginTop="50dp"
+                android:id="@+id/artistPrompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enterArist"
+                android:textSize="20dp"
+
+                />
+
+            <EditText
+                android:id="@+id/artistName"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/artistPrompt"
+                android:hint="@string/hintArtistName"
+                android:inputType="text"/>
+
+            <TextView
+                android:id="@+id/songPrompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/enterSong"
+                android:layout_below="@+id/artistName"
+                android:textSize="20dp"/>
+
+            <EditText
+                android:id="@+id/songName"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/songPrompt"
+                android:hint="@string/hintSongName"
+                android:inputType="text"/>
+
+            <Button
+                android:id="@+id/lyricsSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/songName"
+                android:text="@string/lyricsSearch"/>
+
+
+            <Button
+                android:id="@+id/googleSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gooleSearch"
+                android:layout_toRightOf="@+id/lyricsSearch"
+                android:layout_below="@id/songName"
+                />
+
+
+
+        </RelativeLayout>
+
+        <!-- THIS IS WHAT IS WHAT POPS OUT FROM THE SIDE:-->
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/header_layout"
+            app:menu="@menu/drawer_layoutmenu"
+            android:id="@+id/nav_view"/>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+
+
+
+
+</RelativeLayout>

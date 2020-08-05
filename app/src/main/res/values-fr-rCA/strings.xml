@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FinalProject</string>
+    <string name="enterArist">Entrez le nom de l\'artiste ici</string>
+    <string name="enterSong">Entrez le nom de la chanson ici</string>
+    <string name="hintSongName">titre de chanson</string>
+    <string name="hintArtistName">nom d\'artiste</string>
+    <string name="lyricsSearch">recherche de paroles</string>
+    <string name="gooleSearch">recherche Google</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="savetodb">enregistrer  données</string>
+    <string name="lyrics">Paroles</string>
+    <string name="deezer">recherche deezer</string>
+    <string name="geo">géo</string>
+</resources>
