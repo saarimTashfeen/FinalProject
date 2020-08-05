@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -48,10 +49,18 @@ public class GeoHome extends AppCompatActivity implements NavigationView.OnNavig
     ProgressBar pb;
     city city;
     ArrayList<city> shownCities;
+    ArrayList<city> favouriteCities;
     MyOpener mydb;
     SQLiteDatabase db;
     Toolbar tb;
     MyListAdapter myAdapter;
+    public static final String ITEM_COUNTRY = "COUNTRY";
+    public static final String ITEM_REGION = "REGION";
+    public static final String ITEM_CITY = "CITY";
+    public static final String ITEM_CURRENCY = "CURRENCY";
+    public static final String ITEM_LATITUDE = "LATITUDE";
+    public static final String ITEM_LONGITUDE = "LONGITUDE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +73,7 @@ public class GeoHome extends AppCompatActivity implements NavigationView.OnNavig
         tb = (Toolbar) findViewById(R.id.tb);
         setSupportActionBar(tb);
         shownCities = new ArrayList<>();
+        favouriteCities = new ArrayList<>();
         tb.setTitle("");
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
@@ -85,13 +95,32 @@ public class GeoHome extends AppCompatActivity implements NavigationView.OnNavig
                     String tempLong = lon.getText().toString();
                     String tempLat = lat.getText().toString();
                     req.execute("https://api.geodatasource.com/cities?key=IFSY3SLSX1ZBEQHPP1KANIABBO6DSAQZ&format=xml&lat="+tempLat+""+"&lng="+tempLong+"");
+                    if (shownCities.size()==0){
+                        Toast.makeText(this,"No cities nearby",Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(GeoHome.this, "Invalid longitude", Toast.LENGTH_SHORT);
                 }
             } else {
                 Toast.makeText(GeoHome.this, "Invalid Latitude", Toast.LENGTH_SHORT);
             }
-            myAdapter.notifyDataSetChanged();
+        });
+
+        myAdapter.notifyDataSetChanged();
+        lv.setOnItemClickListener((list,item,position,id) -> {
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString(ITEM_COUNTRY, shownCities.get(position).getCountry());
+            dataToPass.putString(ITEM_REGION, shownCities.get(position).getRegion());
+            dataToPass.putString(ITEM_CITY, shownCities.get(position).getCityName());
+            dataToPass.putString(ITEM_CURRENCY, shownCities.get(position).getCurrency());
+            dataToPass.putString(ITEM_LATITUDE, shownCities.get(position).getLatitude());
+            dataToPass.putString(ITEM_LONGITUDE, shownCities.get(position).getLongitude());
+
+
+            Intent nextActivity = new Intent(GeoHome.this, EmptyActivity.class);
+                nextActivity.putExtras(dataToPass); //send data to next activity
+                startActivity(nextActivity); //make the transition
+
         });
         //loadDataFromDatabase();
 
@@ -199,12 +228,20 @@ public class GeoHome extends AppCompatActivity implements NavigationView.OnNavig
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflate = getLayoutInflater();
-
                 View view = inflate.inflate(R.layout.city_list_layout, parent,false);
                 TextView text = view.findViewById(R.id.id);
-                text.setText(""+shownCities.get(position).toString());
+                text.setText((position+1)+"");
                 TextView text2 = view.findViewById(R.id.cityName);
                 text2.setText(shownCities.get(position).cityName.toString());
+                Button favorite = (Button) view.findViewById(R.id.favourite);
+
+                favorite.setOnClickListener( clk -> {
+                boolean isInserted = mydb.add(shownCities.get(position).getCountry(),shownCities.get(position).getRegion(),shownCities.get(position).getCityName(),shownCities.get(position).getCurrency(),shownCities.get(position).getLatitude(),shownCities.get(position).getLongitude().toString());
+                if (isInserted)
+                    Log.i("Saved in database","yes");
+                else
+                    Log.i("Saved in database","no");
+            });
                 return view;
             }
         }
@@ -254,6 +291,7 @@ public class GeoHome extends AppCompatActivity implements NavigationView.OnNavig
                     }
                     eventType = xpp.next();
                 }
+
                 Log.i("size",""+shownCities.size());
                 for (int i=0;i<shownCities.size();i++){
                     Log.i("city number "+i,shownCities.get(i).toString());
@@ -361,10 +399,11 @@ class MyOpener extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "cities_table";
     public static final String COL_1 = "ID";
     public static final String COL_2 = "country";
-    public static final String COL_3 = "cityName";
-    public static final String COL_4 = "currency";
-    public static final String COL_5 = "latitude";
-    public static final String COL_6 = "longitude";
+    public static final String COL_3 = "region";
+    public static final String COL_4 = "cityName";
+    public static final String COL_5 = "currency";
+    public static final String COL_6 = "latitude";
+    public static final String COL_7 = "longitude";
     public MyOpener(Context ct){
         super(ct,DATABASE_NAME,null,1);
     }
@@ -378,7 +417,8 @@ class MyOpener extends SQLiteOpenHelper {
                 " "+ COL_3 + " text," +
                 " "+ COL_4 +"text," +
                 " "+ COL_5 +"text," +
-                " "+ COL_6 +"text);"
+                " "+ COL_6 +"text," +
+                " "+ COL_7 +"text);"
         );
     }
 
@@ -387,16 +427,16 @@ class MyOpener extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+ TABLE_NAME);
         onCreate(db);
     }
-    public boolean add(String country,String cityName,String currency,String latitude,String longitude){
+    public boolean add(String country,String region,String cityName,String currency,String latitude,String longitude){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        long result = db.insert(TABLE_NAME,null,cv);
         cv.put(COL_2,country);
-        cv.put(COL_3,cityName);
-        cv.put(COL_4,currency);
-        cv.put(COL_5,latitude);
-        cv.put(COL_6,longitude);
-
+        cv.put(COL_3,region);
+        cv.put(COL_4,cityName);
+        cv.put(COL_5,currency);
+        cv.put(COL_6,latitude);
+        cv.put(COL_7,longitude);
+        long result = db.insert(TABLE_NAME,null,cv);
         if (result ==-1)
             return false;
 return true;
