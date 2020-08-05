@@ -33,6 +33,6 @@
         android:id="@+id/GoToDeezerSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DEEZER SONG SEARCH"
+        android:text="@string/deezerToolbar"
         android:layout_below="@id/GoToLyricsSearch"/>
 </RelativeLayout>

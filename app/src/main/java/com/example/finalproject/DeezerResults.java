@@ -155,7 +155,7 @@ public class DeezerResults extends AppCompatActivity implements NavigationView.O
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //Handle presses on the action bar items
-        Intent goToGeo = new Intent(DeezerResults.this, GeoTempHome.class);
+        Intent goToGeo = new Intent(DeezerResults.this, GeoHome.class);
         Intent goToLyrics = new Intent(DeezerResults.this, MainLyrics.class);
         Intent goToDeezer = new Intent(DeezerResults.this, DeezerSearch.class);
 
@@ -182,7 +182,7 @@ public class DeezerResults extends AppCompatActivity implements NavigationView.O
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
-        Intent goToGeo = new Intent(DeezerResults.this, GeoTempHome.class);
+        Intent goToGeo = new Intent(DeezerResults.this, GeoHome.class);
         Intent goToLyrics = new Intent(DeezerResults.this, MainLyrics.class);
         Intent goToDeezer = new Intent(DeezerResults.this, DeezerSearch.class);
 

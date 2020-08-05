@@ -233,7 +233,7 @@ public class DeezerFavourites extends AppCompatActivity implements NavigationVie
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //Handle presses on the action bar items
-        Intent goToGeo = new Intent(DeezerFavourites.this, GeoTempHome.class);
+        Intent goToGeo = new Intent(DeezerFavourites.this, GeoHome.class);
         Intent goToLyrics = new Intent(DeezerFavourites.this, MainLyrics.class);
         Intent goToDeezer = new Intent(DeezerFavourites.this, DeezerSearch.class);
 
@@ -260,7 +260,7 @@ public class DeezerFavourites extends AppCompatActivity implements NavigationVie
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
-        Intent goToGeo = new Intent(DeezerFavourites.this, GeoTempHome.class);
+        Intent goToGeo = new Intent(DeezerFavourites.this, GeoHome.class);
         Intent goToLyrics = new Intent(DeezerFavourites.this, MainLyrics.class);
         Intent goToDeezer = new Intent(DeezerFavourites.this, DeezerSearch.class);
 

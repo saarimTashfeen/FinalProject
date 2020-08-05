@@ -4,8 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class GeoTempHome extends AppCompatActivity {
+public class GeoHome extends AppCompatActivity {
 
+    //TEMPORARY PAGE
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

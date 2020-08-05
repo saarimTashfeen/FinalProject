@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 public class MainLyrics extends AppCompatActivity {
 
+    //TEMPORARY PAGE
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

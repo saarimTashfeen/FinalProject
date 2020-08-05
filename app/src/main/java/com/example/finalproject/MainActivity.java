@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         Button goToDeezer = (Button)findViewById(R.id.GoToDeezerSearch);
 
         goToGeo.setOnClickListener(c -> {
-            Intent geoDataSource = new Intent(MainActivity.this, GeoTempHome.class);
+            Intent geoDataSource = new Intent(MainActivity.this, GeoHome.class);
             startActivity(geoDataSource);
         });
 

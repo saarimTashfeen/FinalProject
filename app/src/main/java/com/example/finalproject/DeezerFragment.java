@@ -132,7 +132,7 @@ public class DeezerFragment extends Fragment implements NavigationView.OnNavigat
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //Handle presses on the action bar items
-        Intent goToGeo = new Intent(this.parentActivity, GeoTempHome.class);
+        Intent goToGeo = new Intent(this.parentActivity, GeoHome.class);
         Intent goToLyrics = new Intent(this.parentActivity, MainLyrics.class);
         Intent goToDeezer = new Intent(this.parentActivity, DeezerSearch.class);
 
@@ -159,7 +159,7 @@ public class DeezerFragment extends Fragment implements NavigationView.OnNavigat
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
-        Intent goToGeo = new Intent(this.parentActivity, GeoTempHome.class);
+        Intent goToGeo = new Intent(this.parentActivity, GeoHome.class);
         Intent goToLyrics = new Intent(this.parentActivity, MainLyrics.class);
         Intent goToDeezer = new Intent(this.parentActivity, DeezerSearch.class);
 
