@@ -415,10 +415,10 @@ class MyOpener extends SQLiteOpenHelper {
                 + COL_1 + " integer," +
                 " "+ COL_2 +" text," +
                 " "+ COL_3 + " text," +
-                " "+ COL_4 +"text," +
-                " "+ COL_5 +"text," +
-                " "+ COL_6 +"text," +
-                " "+ COL_7 +"text);"
+                " "+ COL_4 +" text," +
+                " "+ COL_5 +" text," +
+                " "+ COL_6 +" text," +
+                " "+ COL_7 +" text);"
         );
     }
 
