@@ -11,8 +11,10 @@ public class EmptyClassLyrics extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_empty_class_lyrics);
 
+        //Getting data to load from prev activity
         Bundle dataToPass = getIntent().getExtras();
 
+        //Loading and inflating fragment
         DetailFragmentLyrics dFragment = new DetailFragmentLyrics();
         dFragment.setArguments(dataToPass);
         getSupportFragmentManager()

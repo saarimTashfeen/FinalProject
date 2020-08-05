@@ -61,16 +61,20 @@ public class DetailFragmentLyrics extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        //Creating and inflating the fragment view
         View result = inflater.inflate(R.layout.fragment_detail_lyrics, container, false);
 
+        //Getting data from empty activity
         Bundle dataFromActivity = getArguments();
 
+        //Getting element id's
         TextView artistNameFrag = (TextView) result.findViewById(R.id.artistNameFrag);
         TextView songNameFrag = (TextView) result.findViewById(R.id.songNameFrag);
         TextView idTagFrag = (TextView) result.findViewById(R.id.idFrag);
         TextView lyricsFrag = (TextView) result.findViewById(R.id.lyricsFrag);
 
 
+        //Setting textViews
         artistNameFrag.setText("Artist: " + dataFromActivity.getString(LyricsScreen.artistTag));
         songNameFrag.setText("Song: " + dataFromActivity.getString(LyricsScreen.songTag));
         idTagFrag.setText("ID: " + String.valueOf(dataFromActivity.getLong(LyricsScreen.idTag)));
@@ -79,7 +83,7 @@ public class DetailFragmentLyrics extends Fragment {
 
 
 
-
+        // Returning view
         return result;
     }
 }

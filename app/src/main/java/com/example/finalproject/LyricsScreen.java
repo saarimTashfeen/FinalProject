@@ -59,6 +59,8 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lyrics_screen);
 
+
+        //Same toolbar code and navigation code from last activity
         Toolbar tBar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(tBar);
 
@@ -81,20 +83,25 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
         TextView artistDisplay = (TextView) findViewById(R.id.artistNameDisplay);
         TextView songDisplay = (TextView) findViewById(R.id.songNameDisplay);
 
-        Intent getIntent = getIntent();
+        Intent getIntent = getIntent(); //getting the values from last activity
 
         lyricsDisplay = getIntent.getStringExtra("lyricsPlaceHolder");
         artistName = getIntent.getStringExtra("artistPlaceHolder");
         songName = getIntent.getStringExtra("songPlaceHolder");
 
 
+
+        //Getting setting the textviews from the values of last activity
         displayLyrics.setText(lyricsDisplay);
         artistDisplay.setText(artistName);
         songDisplay.setText(songName);
 
+        //Getting button id's
         Button googleSearch = (Button) findViewById(R.id.googleSearch);
         Button saveToDb = (Button) findViewById(R.id.saveToDb);
 
+
+        //Same google search button on click
         googleSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +115,8 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
             }
         });
 
+
+        //Save to db onclick method
         saveToDb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,6 +135,8 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
             }
         });
 
+
+        //Long click on the listview to delete item
         myList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -145,6 +156,8 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
                                 db.delete(myOpener.TABLE_NAME, myOpener.COL_ID + "= ?", new String[] {Long.toString(myAdapter.getItemId(position))});
                                 songsList.remove(position);
                                 myAdapter.notifyDataSetChanged();
+
+                                //SNACKBAR to show the id of the method deleted
                                 Snackbar.make(myList, "Item Deleted, id: " + id, Snackbar.LENGTH_LONG).show();
 
                                 longClick = false;
@@ -154,6 +167,8 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
                             }
                         });
 
+
+                //NEGATIVE button to calcel deleteing an item
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -180,6 +195,8 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
             }
         });
 
+
+        //On click on list view that opens up the fragment that shows more details on the song
         myList.setOnItemClickListener((list, item, position, id ) -> {
 
             if(longClick == false) {
@@ -200,6 +217,7 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
                 // songs thisRow = myAdapter.getItem(position);
 
 
+                //Starting the empty class that loads the fragmment
                 Intent nextActivity = new Intent(LyricsScreen.this, EmptyClassLyrics.class);
                 nextActivity.putExtras(dataToPass);
                 startActivity(nextActivity);
@@ -220,6 +238,8 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
 
     }
 
+
+    //Same method for toolbar from last activity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -246,12 +266,16 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+
+    //SONGS CLASS to store artist, id, song and lyrics
     class songs{
 
 
+        //Creating varibales
         protected String artist, song, lyrics;
         protected long id;
 
+        //Songs class constructor initializing varibales
         public songs(String artist, String song, String lyrics, long id){
 
             this.artist = artist;
@@ -261,24 +285,29 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
 
         }
 
+        //getter
         public String getArtist(){
 
             return artist;
 
         }
 
+        //getter
         public String getSong(){
 
             return song;
 
         }
 
+
+        //getter
         public String getLyrics(){
 
             return lyrics;
 
         }
 
+        //getter
         public long getId(){
 
             return id;
@@ -287,8 +316,11 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
 
     }
 
+    //SQL CLASS to create DATABASE
     public class myOpener extends SQLiteOpenHelper{
 
+
+        //Creating the column names
         protected final static String DATABASE_NAME = "SongsDB";
         protected final static int VERSION_NUM = 1;
         public final static String TABLE_NAME = "SONGS";
@@ -298,6 +330,8 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
         public final static String COL_LYRICS = "lyrics";
 
 
+
+        //Conctructor
         public myOpener(Context ctx){
 
             super(ctx,DATABASE_NAME, null, VERSION_NUM );
@@ -305,6 +339,8 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
 
         }
 
+
+        //Creating the table
         @Override
         public void onCreate(SQLiteDatabase db) {
 
@@ -335,6 +371,8 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
         }
     }
 
+
+    //List view adapter class
     protected class MyOwnAdapter extends BaseAdapter{
 
 
@@ -356,39 +394,50 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
+            //Inflating the listview for each item
             View newView = getLayoutInflater().inflate(R.layout.songs_layout, parent, false );
 
+            //Getting the current row item
             songs thisRow = getItem(position);
 
+            //getting textview id's
             TextView artistNameList = newView.findViewById(R.id.artistNameList);
             TextView songNameList = newView.findViewById(R.id.songNameList);
             TextView idList = newView.findViewById(R.id.listID);
 
 //            Log.d("TextViewTest", artistNameList.getText().toString());
 
+            //setting textviews
             artistNameList.setText(thisRow.getArtist() + "  ");
             songNameList.setText("  " + thisRow.getSong());
             idList.setText("    ID: " + thisRow.getId());
 
 
+            //returning the view
             return newView;
         }
     }
 
+
+    //Loading from db method
     private void loadDataFromDatabase(){
 
+        //initializing db
         myOpener dbOpener = new myOpener(this);
         db = dbOpener.getWritableDatabase();
+
 
         String [] columns = {myOpener.COL_ARTIST, myOpener.COL_SONG, myOpener.COL_LYRICS, myOpener.COL_ID};
         Cursor resultsLyrics = db.query(false, myOpener.TABLE_NAME, columns, null, null, null, null, null, null);
 
+        //Getting cursor results for appropriate elements
         int artistColumnIndex = resultsLyrics.getColumnIndex(myOpener.COL_ARTIST);
         int songColumnIndex = resultsLyrics.getColumnIndex(myOpener.COL_SONG);
         int lyricsColumnIndex = resultsLyrics.getColumnIndex(myOpener.COL_LYRICS);
         int idColumnIndex = resultsLyrics.getColumnIndex(myOpener.COL_ID);
 
 
+        //loading cursor results in loop to load the db in the list view
         while(resultsLyrics.moveToNext()){
 
             String artistName = resultsLyrics.getString(artistColumnIndex);
@@ -396,6 +445,7 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
             String songLyrics = resultsLyrics.getString(lyricsColumnIndex);
             long id = resultsLyrics.getLong(idColumnIndex);
 
+            //adding the cursor results into the songs class to get loaded into db and listview
             songsList.add(new songs(artistName, songName, songLyrics, id));
 
         }

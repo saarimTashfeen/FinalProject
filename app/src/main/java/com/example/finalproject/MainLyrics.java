@@ -82,6 +82,7 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
         songName = (EditText) findViewById(R.id.songName);
 
 
+        //User can go directly to the database page if they have no song in mind to enter
         toLyrics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +98,7 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
 
 
 
+        // On click for google search button
         googleSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,10 +134,13 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
             }
         });
 
-
+        // On click for lyrics search
         lyricsSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
 
 
                 artistName = (EditText) findViewById(R.id.artistName);
@@ -149,13 +154,17 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
                     e.printStackTrace();
                 }
 
+                if(artistNameEncoded=="" || songNameEncoded == ""){
+
+                    Toast.makeText(MainLyrics.this, "Song Not found", Toast.LENGTH_SHORT).show();
+
+                } else {
 
 
+                    LyricsSearch req = new LyricsSearch();
+                    req.execute("https://api.lyrics.ovh/v1/" + artistNameEncoded + "/" + songNameEncoded);
 
-
-
-                LyricsSearch req = new LyricsSearch();
-                req.execute("https://api.lyrics.ovh/v1/" + artistNameEncoded + "/" + songNameEncoded);
+                }
 
 
                 // Log.i("test", "test" + lyrics);
@@ -166,6 +175,8 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
         });
 
 
+
+        // Shared prefs, loading previous enteries into the edit text fields
         String savedArtist = sharedPrefs.getString("artist", "");
         String savedSong = sharedPrefs.getString("song", "");
 
@@ -195,11 +206,14 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
 
     }
 
+
+    // Navigation Drawer Menu Item Method
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
 
+        //Goes to song search, Austin's Activity
         if (id == R.id.songSearch){
 
             //Toast.makeText(this, "Test Toast", Toast.LENGTH_SHORT).show();
@@ -207,6 +221,8 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
            Intent deezerIntent = new Intent(MainLyrics.this, DeezerSearch.class);
             startActivity(deezerIntent);
 
+
+        //Goes to Geo, Aimen's Activity
         } else if (id == R.id.geoHome){
 
 
@@ -214,6 +230,8 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
             startActivity(geoIntent);
 
         }
+
+        //Closes drawer layout after item is selected
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -223,12 +241,14 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
     }
 
 
+    //Lyrics Search class for AsyncTask Methods
     class LyricsSearch extends AsyncTask<String, Integer, String> {
 
 
 
 
 
+        // DO in background method to get lyrics from API
         @Override
         protected String doInBackground(String... args) {
 
@@ -253,11 +273,17 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
 
                 String line = null;
 
+
+                //String builder is building the string
                 while ((line = reader.readLine()) != null)
                 {
                     sb.append(line + "\n");
+
+
                 }
-                String result = sb.toString(); //result is the whole string
+                String result = sb.toString();
+
+                //Fetching lyirics
                 JSONObject lyricsFetch = new JSONObject(result);
                 lyrics = lyricsFetch.getString("lyrics");
                 Log.i("test2", "test" + result);
@@ -266,13 +292,14 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
 
 
 
-//                    Toast.makeText(getApplicationContext(),"Song not found", Toast.LENGTH_LONG).show();
+                   //Toast.makeText(getApplicationContext(),"Song not found", Toast.LENGTH_LONG).show();
 
 
 
 
 
 
+                //If lyrics are found, intent to load the LyricsScreen Page
                 Intent displayPage = new Intent(MainLyrics.this, LyricsScreen.class);
                 displayPage.putExtra(lyricsPlaceHolder, lyrics);
                 displayPage.putExtra(artistPlaceHolder, artistName.getText().toString());
@@ -318,6 +345,7 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
 
     }
 
+    // on Pause method for shared prefs
     @Override
     protected void onPause() {
         super.onPause();
@@ -334,6 +362,8 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
 
     }
 
+
+    //Inflates the menu layout for toolbar
     public boolean onCreateOptionsMenu(Menu menu){
 
         MenuInflater mInflater = getMenuInflater();
@@ -341,6 +371,8 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
         return true;
     }
 
+
+    //Toolbar menu code
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         String message = null;
@@ -366,6 +398,7 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
             case R.id.helpItem:
                 //message = "You clicked on mail";
 
+                //ALERT DIALOG for the help item
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainLyrics.this)
                         .setTitle("Help Menu")
                         .setMessage("Enter the artist name in the first EditTExt input and the song name in the Second EditText input. LyricsSearch fetches the lyrics and Google search searches up the artist and song name on google")
