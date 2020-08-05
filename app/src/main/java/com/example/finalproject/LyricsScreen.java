@@ -255,7 +255,7 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
             Intent deezerIntent = new Intent(LyricsScreen.this, DeezerSearch.class);
             startActivity(deezerIntent);
 
-            Toast.makeText(this, "Test Toast", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Test Toast", Toast.LENGTH_SHORT).show();
 
 
             //Go to geo, Aimen's activity

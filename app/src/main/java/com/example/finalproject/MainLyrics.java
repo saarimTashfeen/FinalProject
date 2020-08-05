@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -52,6 +53,7 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
     private String artistPlaceHolder = "artistPlaceHolder";
     private String songPlaceHolder = "songPlaceHolder";
     SharedPreferences sharedPrefs = null;
+    private ProgressBar proBar;
     //  private Object FileNotFoundException;
 
 
@@ -59,6 +61,10 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_lyrics);
+
+        proBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        //proBar.setVisibility(View.VISIBLE);
 
         //Loading shared prefs
         sharedPrefs = getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
@@ -262,6 +268,8 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
                 //}
                 InputStream response = urlConnection.getInputStream();
 
+                publishProgress(25);
+
                 // XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
                 //factory.setNamespaceAware(false);
                 //XmlPullParser xpp = factory.newPullParser();
@@ -278,6 +286,8 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
                     sb.append(line + "\n");
                 }
 
+                publishProgress(50);
+
                 String result = sb.toString(); //result is the whole string
 
                 //fetching the tag that contains the lyrics
@@ -289,7 +299,7 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
                 //  lyricsTwo = result;
 
 
-
+                publishProgress(100);
 
 //                    Toast.makeText(getApplicationContext(),"Song not found", Toast.LENGTH_LONG).show();
 
@@ -338,6 +348,15 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
             return "done";
         }
 
+    public void onProgressUpdate (Integer ...args){
+
+        proBar.setVisibility(View.VISIBLE);
+        proBar.setProgress(args[0]);
+        Log.d("test", "test in onProgUpdate");
+
+
+    }
+
 
 
 
@@ -384,7 +403,7 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
                 //message = "You clicked item 1";
 
                 //Goes to deezer activity
-                Intent deezerIntent = new Intent(MainLyrics.this, DeezerSearch.class);
+               Intent deezerIntent = new Intent(MainLyrics.this, DeezerSearch.class);
                 startActivity(deezerIntent);
 
 
@@ -393,7 +412,7 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
               ///  message = "You clicked on the search";
 
                 //goes to geo activity
-                Intent geoIntent = new Intent(MainLyrics.this, GeoHome.class);
+               Intent geoIntent = new Intent(MainLyrics.this, GeoHome.class);
                 startActivity(geoIntent);
 
 
