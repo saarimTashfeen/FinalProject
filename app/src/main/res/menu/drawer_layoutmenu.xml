@@ -14,7 +14,7 @@
         <item
             android:id="@+id/geoHome"
             android:icon="@drawable/ic_geo"
-            android:title="@string/geo"
+            android:title="@string/geo"/>
 
     </group>
 
