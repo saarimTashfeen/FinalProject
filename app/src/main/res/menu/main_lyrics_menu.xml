@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
 
     <item android:id="@+id/item1"
-    android:title="@string/deezer"
-        android:orderInCategory="100"
+        android:title="@string/deezer"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_deezer"/>
 
-        />
+
 
     <item android:id="@+id/item2"
         android:title="@string/geo"
-        android:orderInCategory="101"
-        />
+        android:icon="@drawable/ic_geo"
+        app:showAsAction="always" />
+
+
+
 
     <item android:id="@+id/helpItem"
         android:title="@string/help"
