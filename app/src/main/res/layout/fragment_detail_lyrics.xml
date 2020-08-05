@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailFragmentLyrics"
+    android:id="@+id/frameLayout">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/artistNameFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test text"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:id="@+id/songNameFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test text"
+        android:textSize="20dp"
+        android:layout_marginTop="50dp"
+     />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/idFrag"
+        android:textSize="20dp"
+       android:layout_marginTop="100dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lyrics"
+        android:textSize="30dp"
+        android:layout_marginTop="230dp"/>
+
+
+
+    <ScrollView
+        android:id="@+id/scrollreal"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_gravity="bottom"
+        >
+
+        <TextView
+            android:id="@+id/lyricsFrag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </ScrollView>
+
+
+
+</FrameLayout>
