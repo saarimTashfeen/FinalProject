@@ -18,7 +18,10 @@
         <activity android:name=".DeezerDetails" />
         <activity android:name=".DeezerResults" />
         <activity android:name=".DeezerSearch" />
+        <activity android:name=".EmptyClassLyrics" />
+        <activity android:name=".LyricsScreen" />
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
