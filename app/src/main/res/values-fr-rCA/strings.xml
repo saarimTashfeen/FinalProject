@@ -13,4 +13,5 @@
     <string name="lyrics">Paroles</string>
     <string name="deezer">recherche deezer</string>
     <string name="geo">géo</string>
+    <string name="todb">à la base de données</string>
 </resources>

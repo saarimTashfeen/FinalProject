@@ -14,5 +14,6 @@
     <string name="lyrics">Lyrics</string>
     <string name="deezer">Deezer Song Search API</string>
     <string name="geo">Geo Data Source</string>
+    <string name="todb">to Database</string>
 
 </resources>

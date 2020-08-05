@@ -76,9 +76,22 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
 
         Button googleSearch = (Button) findViewById(R.id.googleSearch);
         Button lyricsSearch = (Button) findViewById(R.id.lyricsSearch);
+        Button toLyrics = (Button) findViewById(R.id.toLyrics);
 
         artistName = (EditText) findViewById(R.id.artistName);
         songName = (EditText) findViewById(R.id.songName);
+
+
+        toLyrics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent toLyrics = new Intent(MainLyrics.this, LyricsScreen.class);
+                startActivity(toLyrics);
+
+            }
+        });
+
 
 
 
