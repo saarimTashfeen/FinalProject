@@ -226,9 +226,12 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.songSearch){
 
+            Intent deezerIntent = new Intent(LyricsScreen.this, DeezerSearch.class);
+            startActivity(deezerIntent);
+
             Toast.makeText(this, "Test Toast", Toast.LENGTH_SHORT).show();
 
-        } (id == R.id.geoHome){
+        } else if(id == R.id.geoHome){
 
             Intent geoIntent = new Intent(LyricsScreen.this, GeoHome.class);
             startActivity(geoIntent);
@@ -424,8 +427,8 @@ public class LyricsScreen extends AppCompatActivity implements NavigationView.On
 
                 break;
             case R.id.item2:
-                Intent geoIntent = new Intent(LyricsScreen.this, GeoHome.class);
-                startActivity(geoIntent);
+              Intent geoIntent = new Intent(LyricsScreen.this, GeoHome.class);
+              startActivity(geoIntent);
                 break;
             case R.id.helpItem:
                 //message = "You clicked on mail";

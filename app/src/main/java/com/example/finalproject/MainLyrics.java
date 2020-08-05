@@ -204,7 +204,7 @@ public class MainLyrics extends AppCompatActivity implements NavigationView.OnNa
 
             //Toast.makeText(this, "Test Toast", Toast.LENGTH_SHORT).show();
 
-            Intent deezerIntent = new Intent(MainLyrics.this, DeezerSearch.class);
+           Intent deezerIntent = new Intent(MainLyrics.this, DeezerSearch.class);
             startActivity(deezerIntent);
 
         } else if (id == R.id.geoHome){
